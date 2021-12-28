@@ -1,44 +1,30 @@
 package baitap;
 
 public class Dog extends Animal implements AnimalMethor{
-    private String bite;
-
-    public Dog(String name, int age, double width, String bite) {
-        super(name, age, width);
-        this.bite = bite;
+    public Dog() {
     }
 
-    public Dog(String bite) {
-        this.bite = bite;
-    }
-
-    public String getBite() {
-        return bite;
-    }
-
-    public void setBite(String bite) {
-        this.bite = bite;
+    public Dog(String name, int age, int weight) {
+        super(name, age, weight);
     }
 
     @Override
     public int run() {
-
-        return run() + 15;
+        return 60;
     }
 
     @Override
     public String makeSound() {
         return "gâu gâu";
     }
-
-    public String bite() {
-        return bite();
+    public void lookMyHouse() {
+        System.out.println("chó biết trông nhà");
     }
-
-    @Override
-    public String toString() {
-        return "Dog{" + super.toString() +
-                "bite='" + bite + '\'' +
-                '}';
+    public void  display() {
+        System.out.printf("%-20s", "Dog");
+        System.out.printf("%-20S", super.getName());
+        System.out.printf("%-20s", super.getAge());
+        System.out.printf("%s", super.getWeight());
+        System.out.println();
     }
 }

@@ -3,12 +3,12 @@ package baitap;
 public class Animal {
     private String name;
     private int age;
-    private double weight;
+    private int weight;
 
     public Animal() {
     }
 
-    public Animal(String name, int age, double weight) {
+    public Animal(String name, int age, int weight) {
         this.name = name;
         this.age = age;
         this.weight = weight;
@@ -30,21 +30,19 @@ public class Animal {
         this.age = age;
     }
 
-    public double getweight() {
+    public int getWeight() {
         return weight;
     }
 
-
-    public void setweight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
-    @Override
-    public String toString() {
-        return "Animal{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", weight=" + weight +
-                '}';
-    }
+    public void display() {
+       System.out.printf("%-20s","Animal");
+       System.out.printf("%-20S",name);
+       System.out.printf("%-20s",age);
+       System.out.printf("%s",weight);
+       System.out.println();
+   }
 }

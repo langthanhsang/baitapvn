@@ -1,44 +1,35 @@
 package baitap;
 
-public class Mouse extends Animal implements AnimalMethor{
+public class Mouse extends Animal implements AnimalMethor {
 
-    private String hide;
-
-    public Mouse(String hide) {
-        this.hide = hide;
+    public Mouse() {
     }
 
-    public Mouse(String name, int age, double width, String hide) {
-        super(name, age, width);
-        this.hide = hide;
-    }
-
-    public String getHide() {
-        return hide;
-    }
-
-    public void setHide(String hide) {
-        this.hide = hide;
+    public Mouse(String name, int age, int weight) {
+        super(name, age, weight);
     }
 
     @Override
     public int run() {
-        return 0;
+        return 20;
     }
 
     @Override
     public String makeSound() {
-        return null;
+        return "chit chit";
     }
 
-    public String hide() {
-        return hide();
+    public void eatRice() {
+        System.out.println("chuột ăn gạo");
     }
 
-    @Override
-    public String toString() {
-        return "Mouse{" + super.toString() +
-                "hide='" + hide + '\'' +
-                '}';
+    public void display() {
+        System.out.printf("%-20s", "Mouse");
+        System.out.printf("%-20S", super.getName());
+        System.out.printf("%-20s", super.getAge());
+        System.out.printf("%s", super.getWeight());
+        System.out.println();
     }
+
+
 }

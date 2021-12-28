@@ -1,49 +1,98 @@
 package baitap;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class AnimalManager {
-    //    Set<Animal> animalSet = new HashSet<>();
-    private ArrayList<Animal> animals;
-    private final Scanner scanner = new Scanner(System.in);
+    HashMap<String, Animal> animals = new HashMap<>();
+    Scanner scanner = new Scanner(System.in);
 
-    public AnimalManager() {
-        this.animals = new ArrayList<>();
+    public boolean addAnimal(int choice) {
+        System.out.println("tên mới : ");
+        String name = scanner.nextLine();
+        System.out.println("tuổi mới : ");
+        int age = scanner.nextInt();
+        System.out.println("cân năng mới: ");
+        int weight = scanner.nextInt();
+        scanner.nextLine();
+        switch (choice) {
+            case 1:
+                Animal animal = new Animal(name, age, weight);
+                return checkNameOfAnimal(animal);
+            case 2:
+                Dog dog = new Dog(name, age, weight);
+                return checkNameOfAnimal(dog);
+            case 3:
+                Cat cat = new Cat(name, age, weight);
+                return checkNameOfAnimal(cat);
+            case 4:
+                Mouse mouse = new Mouse(name, age, weight);
+        }
+        return false;
     }
 
-    public void addAnimal(Animal animal) {
-        animals.add(animal);
+    private boolean checkNameOfAnimal(Animal animal) {
+        HashSet<String> strings = new HashSet<>(animals.keySet());
+        if (strings.add(animal.getName())) {
+            animals.put(animal.getName(), animal);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Animal deleteAnimal(String name) {
-        Animal animal = null;
-        for (Animal a : animals) {
-            if (a.getName() == name) {
-                animal = a;
-            }
+        return animals.remove(name);
+    }
+
+    public Animal updateAnimal(String editName) {
+        Animal animal = animals.get(editName);
+        if (animal != null) {
+            System.out.println("tên mới : ");
+            String name = scanner.nextLine();
+            System.out.println("tuổi mới : ");
+            int age = scanner.nextInt();
+            System.out.println("cân năng mới: ");
+            int weight = scanner.nextInt();
+            scanner.nextLine();
+            animal.setName(name);
+            animal.setAge(age);
+            animal.setWeight(weight);
+            animals.remove(editName);
+            animals.put(name,animal);
         }
-        animals.remove(animal);
-        return animal;
+        assert animal != null;
+        return animals.get(animal.getName());
+
+    }
+
+    public void displayAllAnimal(String name) {
+        animals.get(name).display();
+
     }
     public void displayAll() {
-        for (Animal animal: animals) {
-            System.out.println(animal);
+        for (Animal animal: animals.values()) {
+           animal.display();
         }
     }
 
-    public void createAnimal(Scanner scanner, AnimalManager animalManager) {
-        System.out.println();
-        System.out.println("nhập tên : ");
-        String name = scanner.nextLine();
-        scanner.nextLine();
-        System.out.println("nhập tuổi : ");
-        int age = scanner.nextInt();
-        System.out.println("nhập cân nặng ");
-        double weight = scanner.nextDouble();
-       Animal animal = new Animal(name,age,weight);
-       animalManager.addAnimal(animal);
+    public ArrayList<Dog>displayAllDog(){
+        ArrayList<Dog> dogs = new ArrayList<>();
+        for (Animal animal: animals.values()) {
+            if(animal instanceof  Dog) {
+                dogs.add((Dog) animal);
+            }
+        }
+        return dogs;
     }
+    public ArrayList<Animal> listAnimalByWeight(int weightDown, int weightUp) {
+        ArrayList<Animal> animalList = new ArrayList<>();
+        for (Animal animal : animals.values()) {
+            boolean checkWeight = animal.getWeight() > weightDown && animal.getWeight() < weightUp;
+            if (checkWeight) {
+                animalList.add(animal);
+            }
+        }
+        return animalList;
+    }
+
 }

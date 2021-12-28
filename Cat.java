@@ -1,42 +1,32 @@
 package baitap;
 
-public class Cat extends Animal implements AnimalMethor{
-    private String hunt;
-
-    public Cat(String hunt) {
-        this.hunt = hunt;
+public class Cat extends Animal implements AnimalMethor {
+    public Cat() {
     }
 
-    public Cat(String name, int age, double weight, String hunt) {
+    public Cat(String name, int age, int weight) {
         super(name, age, weight);
-        this.hunt = hunt;
-    }
-
-    public String getHunt() {
-        return hunt;
-    }
-
-    public void setHunt(String hunt) {
-        this.hunt = hunt;
     }
 
     @Override
     public int run() {
-        return 0;
+        return 40;
     }
 
     @Override
     public String makeSound() {
-        return null;
-    }
-    public String hunt() {
-       return hunt();
+        return "meo meo";
     }
 
-    @Override
-    public String toString() {
-        return "Cat{" + super.toString()+
-                "hunt='" + hunt + '\'' +
-                '}';
+    public void catchMouse() {
+        System.out.println("mèo biết bắt chuột");
+    }
+
+    public void display() {
+        System.out.printf("%-20s", "Cat");
+        System.out.printf("%-20S", super.getName());
+        System.out.printf("%-20s", super.getAge());
+        System.out.printf("%s", super.getWeight());
+        System.out.println();
     }
 }
